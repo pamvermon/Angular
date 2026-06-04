@@ -1,0 +1,26 @@
+<router-outlet />
+
+<h1>Registro de Usuario</h1>
+<form [formGroup]="register_form">
+  <div>
+    <label for="nombre">Ingrese su nombre:</label>
+    <input type="text" formContrlName = "nombre" id="nombre">
+    <span *ngIf="getRegisterFormError('nombre')">
+      {{getRegisterFormError("nombre")}}
+    </span>
+  </div>
+  <div>
+    <label for="email">Ingrese su email:</label>
+    <input type="text" formContrlName = "email" id="email">
+  </div>
+  <div>
+    <label for="password">Ingrese su nombre:</label>
+    <input type="text" formContrlName = "nombre" id="nombre">
+  </div>
+  <div>
+    <label for="edad">Ingrese su edad:</label>
+    <input type="text" formContrlName = "nombre" id="edad">
+  </div>
+  <div>
+   <button type="submit">Enviar</button>
+  </div>    
