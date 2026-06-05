@@ -1,0 +1,38 @@
+<div style="padding: 20px; font-family: Arial, sans-serif;">
+  <h2>Panel de Gestión de Productos</h2>
+
+  <button (click)="simularAgregar()" style="margin-bottom: 15px; padding: 8px 12px; cursor: pointer;">
+    ➕ Simular Agregar Producto
+  </button>
+
+  <div *ngIf="productos.length === 0; else tablaProductos" style="color: red; font-weight: bold;">
+    ⚠️ No hay productos disponibles en la lista.
+  </div>
+
+  <ng-template #tablaProductos>
+    <table border="1" cellpadding="10" style="border-collapse: collapse; width: 100%;">
+      <thead>
+        <tr style="background-color: #f2f2f2;">
+          <th>Nombre</th>
+          <th>Fecha de Alta</th>
+          <th>Precio Original</th>
+          <th>Precio con Descuento (15%)</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prod of productos">
+          <td>{{ prod.nombre }}</td>
+          <td>{{ prod.fechaAlta | date:'dd/MM/yyyy' }}</td>
+          <td>{{ prod.precio | currency:'USD' }}</td>
+          <td style="color: green; font-weight: bold;">
+            {{ prod.precioConDescuento | currency:'USD' }}
+          </td>
+          <td>
+            <button (click)="eliminar(prod.id)" style="color: red; cursor: pointer;">❌ Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+</div>
