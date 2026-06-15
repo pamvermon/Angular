@@ -1,0 +1,30 @@
+<div>
+    <h1>Lista de usuarios</h1>
+    <button (click)="agregarUsuarioSimulado()">Agregar usuario</button>
+    @if(usuariosList.length > 0){
+        <div>
+            @for(usuario of usuariosList; track usuario.id){
+                <div>
+                    <h2>{{usuario.nombre}}</h2>
+                    <span>
+                        Fecha nacimiento: {{usuario.fechaNacimiento | date: 'dd/MM/yyyy'}}
+                    </span>
+                    <span>
+                        Fecha nacimiento: {{usuario.fechaNacimiento | date: 'longDate'}}
+                    </span>
+                    <span>
+                        Fecha nacimiento: {{usuario.fechaNacimiento | date: 'MM/dd/yyyy'}}
+                    </span>
+                    <hr/>
+                    <span>Dinero: {{usuario.dinero | currency: 'ARS': 'symbol': '1.2-2'}}</span>
+                    <hr/>
+                    <span>Descuento sobre mi dinero: {{usuario.dinero |descuento: usuario.descuento}}</span>
+
+                    <button (click)="eliminarUsuario(usuario.id)">
+                        Eliminar
+                    </button>
+                </div>
+            }
+        </div>
+    }
+</div>
