@@ -1,0 +1,55 @@
+<!-- 
+  Este lo vemos mas adelante
+-->
+<router-outlet />
+
+
+<h1>Registro de usuario</h1>
+
+<!-- A que grupo pertenece el formulario, QUIEN LO MANEJA? -->
+<form [formGroup]="register_form" (ngSubmit)="submitRegisterForm()">
+  <div>
+    <label for="nombre">Ingrese su nombre:</label>
+    <input 
+      type="text" 
+      formControlName="nombre" 
+      id="nombre"
+      [ngClass]="{
+        'invalid-input': 
+        register_form.get('nombre')?.invalid 
+        && 
+        register_form.get('nombre')?.touched
+      }"
+    >
+    <!-- 
+    *ngIf necesita de CommonModule, se usa en versiones mas viejas < 16
+    -->
+    <!-- <span *ngIf="getRegisterFormError('nombre')">
+      {{getRegisterFormError("nombre")}}
+    </span> -->
+    <!-- 
+    @if No necesita del common module
+    Se usa en versiones mas modernas
+    -->
+    @if(getRegisterFormError('nombre')){
+      <span >
+        {{getRegisterFormError("nombre")}}
+      </span>
+    }
+  </div>
+  <div>
+    <label for="email">Ingrese su email:</label>
+    <input type="email" formControlName="email" id="email">
+  </div>
+  <div>
+    <label for="password">Ingrese su contraseña:</label>
+    <input type="password" formControlName="password" id="password">
+  </div>
+  <div>
+    <label for="edad">Ingrese su edad:</label>
+    <input type="number" formControlName="edad" id="edad">
+  </div>
+  <button type="submit">Enviar</button>
+</form>
+
+<app-lista-usuarios></app-lista-usuarios>
