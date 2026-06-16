@@ -2,18 +2,34 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'inicio',
+    loadComponent: () => import('./modules/inicio/inicio').then(m => m.InicioComponent)
+  },
+  {
     path: 'productos',
-    // Si tenés los componentes creados, los podés cargar directo acá arriba así:
-    // loadComponent: () => import('./modules/productos/productos.component').then(m => m.ProductosComponent)
-    children: [] 
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./modules/productos/pages/productos-list/productos-list').then(m => m.ProductoListaComponent)
+      },
+      {
+        path: 'detalle',
+        loadComponent: () => import('./modules/productos/pages/producto-detalle/producto-detalle').then(m => m.ProductoDetalleComponent)
+      }
+    ]
   },
   {
     path: 'usuarios',
-    children: []
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./modules/usuarios/pages/usuarios-list/usuarios-list').then(m => m.UsuarioListaComponent)
+      }
+    ]
   },
   {
     path: '',
-    redirectTo: 'productos',
+    redirectTo: 'inicio',
     pathMatch: 'full'
   }
 ];
