@@ -1,15 +1,35 @@
 import { Routes } from '@angular/router';
-import { InicioComponent } from './modules/inicio/inicio';
 
 export const routes: Routes = [
-  { path: '', component: InicioComponent },
-  { 
-    path: 'productos', 
-    loadChildren: () => import('./modules/productos/productos.routes').then(m => m.PRODUCTOS_ROUTES) 
+  {
+    path: 'inicio',
+    loadComponent: () => import('./modules/inicio/inicio').then(m => m.InicioComponent)
   },
-  { 
-    path: 'usuarios', 
-    loadChildren: () => import('./modules/usuarios/usuarios.routes').then(m => m.USUARIOS_ROUTES) 
+  {
+    path: 'productos',
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./modules/productos/pages/productos-list/productos-list').then(m => m.ProductoListaComponent)
+      },
+      {
+        path: 'detalle',
+        loadComponent: () => import('./modules/productos/pages/producto-detalle/producto-detalle').then(m => m.ProductoDetalleComponent)
+      }
+    ]
   },
-  { path: '**', redirectTo: '' }
+  {
+    path: 'usuarios',
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./modules/usuarios/pages/usuarios-list/usuarios-list').then(m => m.UsuarioListaComponent)
+      }
+    ]
+  },
+  {
+    path: '',
+    redirectTo: 'inicio',
+    pathMatch: 'full'
+  }
 ];
