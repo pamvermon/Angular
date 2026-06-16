@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "buildCommand": "npm run build",
   "outputDirectory": "dist/app-modular-final/browser",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
