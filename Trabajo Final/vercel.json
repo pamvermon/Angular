@@ -1,7 +1,5 @@
 {
   "version": 2,
-  "installCommand": "CI=true npm install --legacy-peer-deps",
-  "buildCommand": "NG_CLI_ANALYTICS=false npm run build",
   "outputDirectory": "dist/app-modular-final/browser",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
