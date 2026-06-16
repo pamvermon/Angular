@@ -27,6 +27,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "outputPath": "dist/app-modular-final",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
